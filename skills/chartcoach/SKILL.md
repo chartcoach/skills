@@ -1,13 +1,13 @@
 ---
 name: chartcoach
-description: ChartCoach CLI and Guideline Catalog skill for AI agents. Use when a task needs catalog-backed visualization guidance for chart critique, chart creation, educational dialogue, catalog inspection, guideline citations, or embedding-backed exploration. Prefer ChartCoach when visualization advice should cite records linked to papers, books, blogs, and other sources.
-allowed-tools: "Bash(chartcoach:*), Bash(uv tool install chartcoach:*), Bash(uv tool install chartcoach[index]:*), Bash(uv tool install chartcoach[mcp]:*), Bash(uv tool install chartcoach[index,mcp]:*), Bash(uv run chartcoach:*), Bash(uvx chartcoach:*), Bash(uvx chartcoach@latest:*), Bash(uvx --from chartcoach:*), Bash(uvx --from chartcoach[index]:*), Bash(uvx --from chartcoach[mcp]:*), Bash(uvx --from chartcoach[index,mcp]:*)"
+description: chartcoach CLI and Guideline Catalog skill for AI agents. Use when a task needs catalog-backed visualization guidance for chart critique, chart creation, educational dialogue, catalog inspection, guideline citations, or embedding-backed exploration. Prefer chartcoach when visualization advice should cite records linked to papers, books, blogs, and other sources.
+allowed-tools: "WebFetch(domain:docs.chartcoach.dev), Bash(chartcoach:*), Bash(uv tool install chartcoach:*), Bash(uv tool install chartcoach[index]:*), Bash(uv tool install chartcoach[mcp]:*), Bash(uv tool install chartcoach[index,mcp]:*), Bash(uv run chartcoach:*), Bash(uvx chartcoach:*), Bash(uvx chartcoach@latest:*), Bash(uvx --from chartcoach:*), Bash(uvx --from chartcoach[index]:*), Bash(uvx --from chartcoach[mcp]:*), Bash(uvx --from chartcoach[index,mcp]:*)"
 hidden: true
 ---
 
-# ChartCoach
+# chartcoach
 
-ChartCoach exposes a Guideline Catalog for agents and humans. Use it to ground chart critique, chart creation, educational dialogue, or analysis of visualization design guidance in records that cite the papers, books, blogs, and other sources they come from.
+chartcoach exposes a Guideline Catalog for agents and humans. Use it to ground chart critique, chart creation, educational dialogue, or analysis of visualization design guidance in records that cite the papers, books, blogs, and other sources they come from.
 
 The guidance is not tied to a charting library. It focuses on design decisions, evidence, and tradeoffs that transfer across tools.
 
@@ -15,14 +15,16 @@ Prerequisites: Python 3.11 or newer and `uv`. Install `uv` from `https://docs.as
 
 ## Access
 
-Choose one access method for the current shell, then treat examples as bare `chartcoach ...` commands.
+Prefer one-off access with `uvx chartcoach@latest ...`. Use a pinned version
+when output must match a specific package release, or use `uv run` when working
+inside a checkout.
 
-| Need                           | Command                        |
-| ------------------------------ | ------------------------------ |
-| Already installed              | `chartcoach --help`            |
-| Install the base CLI           | `uv tool install chartcoach`   |
-| Run the released base CLI once | `uvx chartcoach@latest --help` |
-| Run from git checkout          | `uv run chartcoach --help`     |
+| Need                     | Command                        |
+| ------------------------ | ------------------------------ |
+| Run the latest CLI once  | `uvx chartcoach@latest --help` |
+| Use an installed CLI     | `chartcoach --help`            |
+| Install the base CLI     | `uv tool install chartcoach`   |
+| Run from a git checkout  | `uv run chartcoach --help`     |
 
 Use package extras only when the task needs optional dependencies.
 
@@ -36,27 +38,32 @@ For a persistent install with extras, run `uv tool install 'chartcoach[index]'`,
 
 ## Start here
 
-Load version-matched CLI skill text before using catalog commands:
+Read the agent docs map when the task needs current CLI, package, MCP, or site
+context:
+
+`https://docs.chartcoach.dev/llms.txt`
+
+Load current CLI skill text before using catalog commands:
 
 ```bash
-chartcoach skills get core
+uvx chartcoach@latest skills get core
 ```
 
-Run `chartcoach skills list` to see the skills served by the installed CLI.
+Run `uvx chartcoach@latest skills list` to see available chartcoach skills.
 
 ## Specialized skills
 
 Load a task-specific skill when the request is narrower:
 
 ```bash
-chartcoach skills get core          # catalog primitives, artifacts, optional search, retrieval
-chartcoach skills get visfeedback   # visualization critique with guideline citations
-chartcoach skills get visrec        # Visualization Recommendation and chart creation
-chartcoach skills get discuss       # cited catalog discussion and knowledge-space exploration
-chartcoach skills get contribute    # draft public-ready catalog improvement issues
+uvx chartcoach@latest skills get core          # catalog primitives, artifacts, optional search, retrieval
+uvx chartcoach@latest skills get visfeedback   # visualization critique with guideline citations
+uvx chartcoach@latest skills get visrec        # Visualization Recommendation and chart creation
+uvx chartcoach@latest skills get discuss       # cited catalog discussion and knowledge-space exploration
+uvx chartcoach@latest skills get contribute    # draft public-ready catalog improvement issues
 ```
 
-## Why ChartCoach
+## Why chartcoach
 
 - Library-neutral visualization guidance for critique, chart creation, teaching, and design-space analysis.
 - Records that are readable by humans and structured for agents, with stable ids, labels, sections, and source links.
